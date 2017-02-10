@@ -22,12 +22,25 @@ var meuComponente = React.createClass({
 });
 
 var meuComponente2 = React.createClass({
-	propTypes: {
+	PropTypes: {
 		name:React.PropTypes.string.isRequire,
+		middleName:React.PropTypes.string,
+		familyName:React.PropTypes.string.isRequire,
+		address:React.PropTypes.string,
+	},
+	getDefaultProps: function() {
+		return {
+			middleName: '',
+			address : 'n/a',
+		};
+
+
 	},
 	render : function(){
-		return React.DOM.span(null, "Meu nome é "+this.props.name+"!")
-	}
+		return React.DOM.span(null, "Meu nome é "+this.props.name+" "+this.props.middleName + " " + this.props.familyName+"!\nE meu endereço é "+this.props.address);
+	},
+
+
 });
 
 var ComponentFactory = React.createFactory(meuComponente);
@@ -40,6 +53,7 @@ ReactDOM.render(
 	//React.DOM.h1(null, "Hello World"),
 	React.createElement(meuComponente2, {
 		name:"Saulo",
+		familyName:"Carvalho",
 	}),
 	document.getElementById("app")
 	);
